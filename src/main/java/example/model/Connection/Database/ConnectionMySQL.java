@@ -1,4 +1,4 @@
-package example.model.Connection;
+package example.model.Connection.Database;
 
 import example.utils.XMLManager;
 
@@ -12,7 +12,7 @@ public class ConnectionMySQL {
     private static Connection conn;
 
     private ConnectionMySQL(){
-        ConnectionProperties properties = (ConnectionProperties) XMLManager.readXML(new ConnectionProperties(),FILE);
+        ConnectionPropertiesDB properties = (ConnectionPropertiesDB) XMLManager.readXML(new ConnectionPropertiesDB(),FILE);
 
         try {
             conn = DriverManager.getConnection(properties.getURL(),properties.getUser(),properties.getPassword());
@@ -38,6 +38,4 @@ public class ConnectionMySQL {
             }
         }
     }
-
-
 }
