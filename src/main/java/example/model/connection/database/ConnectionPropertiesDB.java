@@ -1,27 +1,29 @@
-package example.model.Connection.FTP;
+package example.model.connection.database;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 
-@XmlRootElement(name="connectionftp")
+@XmlRootElement(name="connection")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class ConnectionPropertiesFTP implements Serializable {
+public class ConnectionPropertiesDB implements Serializable {
     private static final long serialVersionUID=1L;
     private String server;
     private String port;
+    private String database;
     private String user;
     private String password;
 
-    public ConnectionPropertiesFTP(String server, String port, String user, String password) {
+    public ConnectionPropertiesDB(String server, String port, String database, String user, String password) {
         this.server = server;
         this.port = port;
+        this.database = database;
         this.user = user;
         this.password = password;
     }
 
-    public ConnectionPropertiesFTP() {
+    public ConnectionPropertiesDB() {
     }
 
     public String getServer() {
@@ -38,6 +40,14 @@ public class ConnectionPropertiesFTP implements Serializable {
 
     public void setPort(String port) {
         this.port = port;
+    }
+
+    public String getDatabase() {
+        return database;
+    }
+
+    public void setDatabase(String database) {
+        this.database = database;
     }
 
     public String getUser() {
@@ -61,12 +71,13 @@ public class ConnectionPropertiesFTP implements Serializable {
         return "ConnectionProperties{" +
                 "server='" + server + '\'' +
                 ", port='" + port + '\'' +
+                ", database='" + database + '\'' +
                 ", user='" + user + '\'' +
                 ", password='" + password + '\'' +
                 '}';
     }
 
     public String getURL(){
-        return "";
+        return "jdbc:mysql://"+server+":"+port+"/"+database;
     }
 }

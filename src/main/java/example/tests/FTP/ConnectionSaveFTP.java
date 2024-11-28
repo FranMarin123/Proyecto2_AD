@@ -1,7 +1,6 @@
 package example.tests.FTP;
 
-import example.model.Connection.FTP.ConnectionFTP;
-import example.model.Connection.FTP.ConnectionPropertiesFTP;
+import example.model.connection.FTP.ConnectionPropertiesFTP;
 import example.utils.XMLManager;
 
 public class ConnectionSaveFTP {

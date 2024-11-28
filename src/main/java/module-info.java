@@ -6,6 +6,7 @@ module example {
     requires org.apache.commons.net;
 
     opens example to javafx.fxml;
-    opens example.model.Connection.FTP to java.xml.bind;
+    opens example.model.connection.FTP to java.xml.bind;
+    opens example.model.connection.database to java.xml.bind;
     exports example;
 }
