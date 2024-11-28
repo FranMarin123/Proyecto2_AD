@@ -1,4 +1,4 @@
-package example.model.Connection.Database;
+package example.model.connection.database;
 
 import example.utils.XMLManager;
 
@@ -16,9 +16,9 @@ public class ConnectionMySQL {
 
         try {
             conn = DriverManager.getConnection(properties.getURL(),properties.getUser(),properties.getPassword());
+
         } catch (SQLException e) {
             e.printStackTrace();
-            conn=null;
         }
     }
 

@@ -1,6 +1,6 @@
 package example.tests.DB;
 
-import example.model.Connection.Database.ConnectionPropertiesDB;
+import example.model.connection.database.ConnectionPropertiesDB;
 import example.utils.XMLManager;
 
 public class ConnectionLoadDB {

@@ -1,29 +1,27 @@
-package example.model.Connection.Database;
+package example.model.connection.FTP;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 
-@XmlRootElement(name="connection")
+@XmlRootElement(name="connectionftp")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class ConnectionPropertiesDB implements Serializable {
+public class ConnectionPropertiesFTP implements Serializable {
     private static final long serialVersionUID=1L;
     private String server;
     private String port;
-    private String database;
     private String user;
     private String password;
 
-    public ConnectionPropertiesDB(String server, String port, String database, String user, String password) {
+    public ConnectionPropertiesFTP(String server, String port, String user, String password) {
         this.server = server;
         this.port = port;
-        this.database = database;
         this.user = user;
         this.password = password;
     }
 
-    public ConnectionPropertiesDB() {
+    public ConnectionPropertiesFTP() {
     }
 
     public String getServer() {
@@ -40,14 +38,6 @@ public class ConnectionPropertiesDB implements Serializable {
 
     public void setPort(String port) {
         this.port = port;
-    }
-
-    public String getDatabase() {
-        return database;
-    }
-
-    public void setDatabase(String database) {
-        this.database = database;
     }
 
     public String getUser() {
@@ -71,13 +61,12 @@ public class ConnectionPropertiesDB implements Serializable {
         return "ConnectionProperties{" +
                 "server='" + server + '\'' +
                 ", port='" + port + '\'' +
-                ", database='" + database + '\'' +
                 ", user='" + user + '\'' +
                 ", password='" + password + '\'' +
                 '}';
     }
 
     public String getURL(){
-        return "jdbc:mysql://"+server+":"+port+"/"+database;
+        return "";
     }
 }
