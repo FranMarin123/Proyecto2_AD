@@ -4,12 +4,12 @@ import java.util.List;
 import java.util.Objects;
 
 public class Video {
-    private int id;
-    private String name;
-    private String url;
-    private User videoOwner;
-    private LibraryVideo libraryVideo;
-    private List<Tag> tags;
+    protected int id;
+    protected String name;
+    protected String url;
+    protected User videoOwner;
+    protected LibraryVideo libraryVideo;
+    protected List<Tag> tags;
 
     public Video(){
         this(-1,"","",null,null,null);

@@ -9,6 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.List;
 
 public class LibraryDAO extends Library {
     private final static String INSERT="INSERT INTO library (id_user) VALUES (?)";
@@ -20,7 +21,7 @@ public class LibraryDAO extends Library {
     public LibraryDAO() {
     }
 
-    public LibraryDAO(int id, User owner, LibraryVideo libraryVideo) {
+    public LibraryDAO(int id, User owner, List<LibraryVideo> libraryVideo) {
         super(id, owner, libraryVideo);
     }
 
@@ -51,5 +52,9 @@ public class LibraryDAO extends Library {
             }
         }*/
         return result;
+    }
+
+    public static Library findById(int idToFind){
+        return null;
     }
 }

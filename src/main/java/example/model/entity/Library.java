@@ -1,17 +1,18 @@
 package example.model.entity;
 
+import java.util.List;
 import java.util.Objects;
 
 public class Library {
     protected int id;
     protected User owner;
-    protected LibraryVideo libraryVideo;
+    protected List<LibraryVideo> libraryVideo;
 
     public Library() {
         this(-1,null,null);
     }
 
-    public Library(int id, User owner, LibraryVideo libraryVideo) {
+    public Library(int id, User owner, List<LibraryVideo> libraryVideo) {
         this.id = id;
         this.owner = owner;
         this.libraryVideo = libraryVideo;
@@ -33,11 +34,11 @@ public class Library {
         this.owner = owner;
     }
 
-    public LibraryVideo getLibraryVideo() {
+    public List<LibraryVideo> getLibraryVideo() {
         return libraryVideo;
     }
 
-    public void setLibraryVideo(LibraryVideo libraryVideo) {
+    public void setLibraryVideo(List<LibraryVideo> libraryVideo) {
         this.libraryVideo = libraryVideo;
     }
 
