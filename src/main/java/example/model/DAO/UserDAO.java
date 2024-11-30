@@ -11,7 +11,7 @@ import java.sql.Statement;
 public class UserDAO extends User{
     private final static String INSERT="INSERT INTO user (username,password,email) VALUES (?,?,?)";
     private final static String UPDATE = "UPDATE user SET REPLACE=? WHERE id=?";
-    private final static String DELETE="DELETE FROM user WHERE email=?";
+    private final static String DELETE="DELETE FROM user WHERE email LIKE ?";
     private final static String FINDBYID="SELECT id,username,password,email FROM user WHERE id=?";
     private final static String FINDBYEMAIL="SELECT id,username,password,email FROM user WHERE email LIKE ?";
 
@@ -89,7 +89,7 @@ public class UserDAO extends User{
         return false;
     }
 
-    public User findById(int idToFind) {
+    public static User findById(int idToFind) {
         User result = null;
         if (idToFind > 0) {
             try (PreparedStatement pst = ConnectionMySQL.getConnection().prepareStatement(FINDBYID)) {

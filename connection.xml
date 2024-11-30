@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <connection>
-    <server></server>
-    <port></port>
-    <database></database>
-    <user></user>
+    <server>localhost</server>
+    <port>3306</port>
+    <database>proyecto2ad</database>
+    <user>root</user>
     <password></password>
 </connection>

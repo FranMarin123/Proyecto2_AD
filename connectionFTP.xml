@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <connectionftp>
-    <server></server>
-    <port></port>
-    <user></user>
-    <password></password>
+    <server>192.168.1.133</server>
+    <port>21</port>
+    <user>user_ftp</user>
+    <password>ftp</password>
 </connectionftp>
