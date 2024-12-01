@@ -10,6 +10,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 public class LibraryVideoDAO {
     private final static String INSERT = "INSERT INTO videolibrary (id_video,id_library,visto) VALUES (?,?,?)";
@@ -75,6 +77,20 @@ public class LibraryVideoDAO {
             }
         }
         return null;
+    }
+
+    public static List<LibraryVideo> findAllVideosForLibrary(Library libraryToFind){
+        List<LibraryVideo> allVideoLibrary=new ArrayList<>();
+        List<Video> allVideosForUser=VideoDAO.getVideosForThisUser(libraryToFind.getOwner());
+        for (Video video: allVideosForUser){
+            LibraryVideo tmpLibraryVideo=findById(libraryToFind.getId(),video.getId());
+            if (tmpLibraryVideo==null){
+                save(libraryToFind,video);
+                tmpLibraryVideo=findById(libraryToFind.getId(),video.getId());
+            }
+            allVideoLibrary.add(tmpLibraryVideo);
+        }
+        return allVideoLibrary;
     }
 
 }

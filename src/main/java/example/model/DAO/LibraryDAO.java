@@ -12,10 +12,10 @@ import java.sql.Statement;
 import java.util.List;
 
 public class LibraryDAO extends Library {
-    private final static String INSERT="INSERT INTO library (id_user) VALUES (?)";
-    private final static String DELETE="DELETE FROM user WHERE email=?";
-    private final static String FINDBYID="SELECT id,username,password,email FROM user WHERE id=?";
-    private final static String FINDBYEMAIL="SELECT id,username,password,email FROM user WHERE email LIKE ?";
+    private final static String INSERT = "INSERT INTO library (id_user) VALUES (?)";
+    private final static String DELETE = "DELETE FROM library WHERE id_user=?";
+    private final static String FINDBYID = "SELECT id,id_user FROM library WHERE id=?";
+    private final static String FINDBYOWNER = "SELECT id,id_user FROM library WHERE id_user LIKE ?";
 
 
     public LibraryDAO() {
@@ -29,32 +29,81 @@ public class LibraryDAO extends Library {
         super(library.getId(), library.getOwner(), library.getLibraryVideo());
     }
 
-    public boolean save(){
-        boolean result=false;
-        /*if (this.getEmail() == null || this.getEmail().isEmpty()) {
+    public boolean save() {
+        if (this.getOwner() == null || this.getId() < 0) {
             return false;
-        }else {
-            User userToFind=findByEmail(this.getEmail());
-            if (userToFind==null){
-                try (PreparedStatement pst= ConnectionMySQL.getConnection().prepareStatement(INSERT, Statement.RETURN_GENERATED_KEYS)){
-                    pst.setString(1, this.getUsername());
-                    pst.setString(2, this.getPassword());
-                    pst.setString(3, this.getEmail());
+        } else {
+            Library libraryToFind = findByOwner(this.getOwner());
+            if (libraryToFind == null) {
+                try (PreparedStatement pst = ConnectionMySQL.getConnection().prepareStatement(INSERT, Statement.RETURN_GENERATED_KEYS)) {
+                    pst.setInt(1, this.getOwner().getId());
                     pst.executeUpdate();
-                    ResultSet rs= pst.getGeneratedKeys();
-                    if (rs.first()){
+                    ResultSet rs = pst.getGeneratedKeys();
+                    if (rs.first()) {
                         this.setId(rs.getInt(1));
                     }
+                    this.setLibraryVideo(LibraryVideoDAO.findAllVideosForLibrary(this));
                     return true;
                 } catch (SQLException e) {
                     return false;
                 }
             }
-        }*/
-        return result;
+        }
+        return false;
     }
 
-    public static Library findById(int idToFind){
+    public boolean delete() {
+        if (this.getOwner() != null && this.getId() > 0) {
+            try (PreparedStatement pst = ConnectionMySQL.getConnection().prepareStatement(DELETE)) {
+                pst.setInt(1, this.getOwner().getId());
+                pst.executeUpdate();
+                return true;
+            } catch (SQLException e) {
+                return false;
+            }
+        }
+        return false;
+    }
+
+    public static Library findById(int idToFind) {
+        Library result = null;
+        if (idToFind > 0) {
+            try (PreparedStatement pst = ConnectionMySQL.getConnection().prepareStatement(FINDBYID)) {
+                pst.setInt(1, idToFind);
+                ResultSet rs = pst.executeQuery();
+                result = new Library();
+                if (rs.next()) {
+                    result.setId(rs.getInt("id"));
+                    result.setOwner(UserDAO.findById(rs.getInt("id_user")));
+                    result.setLibraryVideo(LibraryVideoDAO.findAllVideosForLibrary(result));
+                }
+                return result;
+            } catch (SQLException e) {
+                return null;
+            }
+        }
         return null;
     }
+
+    public static Library findByOwner(User owner) {
+        Library result = null;
+        if (owner != null && owner.getId() > 0) {
+            try (PreparedStatement pst = ConnectionMySQL.getConnection().prepareStatement(FINDBYOWNER)) {
+                pst.setInt(1, owner.getId());
+                ResultSet rs = pst.executeQuery();
+                result = new Library();
+                if (rs.next()) {
+                    result.setId(rs.getInt("id"));
+                    result.setOwner(UserDAO.findById(rs.getInt("id_user")));
+                    result.setLibraryVideo(LibraryVideoDAO.findAllVideosForLibrary(result));
+                }
+                return result;
+            } catch (SQLException e) {
+                return null;
+            }
+        }
+        return null;
+    }
+
+
 }
