@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="example.PrincipalScreenController">
+   <children>
+
+      <Text layoutX="44.0" layoutY="365.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Francisco Javier Marín Álvarez" AnchorPane.bottomAnchor="31.0" AnchorPane.leftAnchor="44.0" />
+      <Text layoutX="44.0" layoutY="382.0" strokeType="OUTSIDE" strokeWidth="0.0" text="2º DAM" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="44.0" />
+      <ImageView fitHeight="114.0" fitWidth="204.0" AnchorPane.leftAnchor="200.0">
+         <AnchorPane.topAnchor>50.0</AnchorPane.topAnchor>
+         <image>
+            <Image url="@img/iVideoSF.PNG" />
+         </image>
+      </ImageView>
+
+      <!-- Contenedor para los botones centrados -->
+      <VBox alignment="CENTER" spacing="10.0" AnchorPane.leftAnchor="270.0" AnchorPane.topAnchor="200.0">
+         <layoutX>290.0</layoutX> <!-- Centrado para un ancho de 680 px -->
+         <layoutY>200.0</layoutY> <!-- Aproximadamente centrado para un alto de 520 px -->
+         <children>
+            <Button onAction="#loginClick" text="Login" />
+            <Button onAction="#registerClick" text="Register" />
+            <Button onAction="#exitClick" text="Salir" />
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
