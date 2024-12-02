@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="520.0" prefWidth="680.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="example.LoginController">
+<AnchorPane prefHeight="520.0" prefWidth="680.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="example.controllers.LoginController">
 
     <Text layoutX="44.0" layoutY="365.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Francisco Javier Marín Álvarez" AnchorPane.bottomAnchor="31.0" AnchorPane.leftAnchor="44.0" />
     <Text layoutX="44.0" layoutY="382.0" strokeType="OUTSIDE" strokeWidth="0.0" text="2º DAM" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="44.0" />
