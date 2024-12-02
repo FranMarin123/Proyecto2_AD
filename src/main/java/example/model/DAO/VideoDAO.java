@@ -17,7 +17,7 @@ public class VideoDAO extends Video {
     private static final String FINDBYID = "SELECT id, nombre, url, id_user FROM video WHERE id = ?";
     private static final String FINDBYNAME = "SELECT id, nombre, url, id_user FROM video WHERE nombre LIKE ?";
     private static final String FINDTAGFORVIDEOS = "SELECT tv.id_video FROM video as v JOIN tagvideo AS tv ON tv.id_video=v.id WHERE v.name LIKE ?";
-    private static final String FINDALLVIDEOS="SELECT id, nombre, url, id_user FROM video";
+    private static final String FINDALLVIDEOS="SELECT id, nombre, url, id_user FROM video ORDER BY nombre ASC";
     private static final String ADDTAGTOAVIDEO="INSERT INTO tagvideo (id_tag,id_video) VALUES (?,?)";
 
     public VideoDAO() {

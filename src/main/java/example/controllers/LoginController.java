@@ -50,7 +50,6 @@ public class LoginController extends Controller implements Initializable {
                 if (tmpUser.getEmail().equals(userDB.getEmail()) && tmpUser.getPassword().equals(userDB.getPassword())){
                     UserSigned.getInstance(userDB);
                     ActualLibrary.getInstance();
-                    System.out.println(UserSigned.getInstance().getCurrentUser());
                     JavaFXUtils.showConfirmAlert("INICIO CORRECTO","Has iniciado sesion correctamente");
                     App.currentController.changeScene(Scenes.MAINPAGE,null);
                 }else {
