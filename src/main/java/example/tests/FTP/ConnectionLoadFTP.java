@@ -12,7 +12,7 @@ public class ConnectionLoadFTP {
         ConnectionFTP.getConnection();
         System.out.println(ConnectionFTP.getConnection());
         System.out.println("Descargando");
-        //System.out.println(ConnectionFTP.getConnection().downloadFile("/ftp/prueba.txt","prueba.txt"));
-        System.out.println(ConnectionFTP.getConnection().uploadFile("C:/Users/franc/Desktop/PalomaJump.mp4","/ftp/PalomaJump.mp4"));
+        //System.out.println(ConnectionFTP.getConnection().downloadFile("/ftp/PalomaJump.mp4","prueba.txt"));
+        System.out.println(ConnectionFTP.getConnection().uploadFile("C:/Users/franc/Desktop/Futbol1.mp4","/ftp/Futbol3.mp4"));
     }
 }

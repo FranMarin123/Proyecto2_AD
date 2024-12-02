@@ -8,13 +8,28 @@ public class Tag {
     private String name;
     private List<Video> videos;
 
-    public Tag(){
-        this("",null);
+    public Tag() {
+        this("", null);
     }
 
     public Tag(String name, List<Video> videos) {
         this.name = name;
         this.videos = videos;
+    }
+
+    public Tag(int id,String name, List<Video> videos) {
+        this.id=id;
+        this.name = name;
+        this.videos = videos;
+    }
+
+    public Tag(int id,String name) {
+        this.id=id;
+        this.name = name;
+    }
+
+    public Tag(String name) {
+        this.name = name;
     }
 
     public int getId() {

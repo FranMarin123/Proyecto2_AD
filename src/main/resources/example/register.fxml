@@ -27,10 +27,10 @@
         <layoutX>240.0</layoutX> <!-- Centrado horizontalmente para un ancho de 680 px -->
         <layoutY>170.0</layoutY> <!-- Ajustado para estar en el centro vertical -->
         <children>
-            <TextField promptText="Enter a email" />
-            <TextField promptText="Enter a name" />
-            <PasswordField promptText="Enter a password" />
-            <Button text="Register" />
+            <TextField fx:id="email" promptText="Enter a email" />
+            <TextField fx:id="name" promptText="Enter a name" />
+            <PasswordField fx:id="password" promptText="Enter a password" />
+            <Button onAction="#registerClick" text="Register" />
         </children>
     </VBox>
 

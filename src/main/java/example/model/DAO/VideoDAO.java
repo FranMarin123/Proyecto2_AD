@@ -11,13 +11,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class VideoDAO extends Video {
-    private static final String INSERT = "INSERT INTO video (name, url, id_user) VALUES (?, ?, ?)";
+    private static final String INSERT = "INSERT INTO video (nombre, url, id_user) VALUES (?, ?, ?)";
     private static final String UPDATE = "UPDATE video SET REPLACE = ? WHERE id = ?";
     private static final String DELETE = "DELETE FROM video WHERE id = ?";
-    private static final String FINDBYID = "SELECT id, name, url, id_user FROM video WHERE id = ?";
-    private static final String FINDBYNAME = "SELECT id, name, url, id_user FROM video WHERE name LIKE ?";
+    private static final String FINDBYID = "SELECT id, nombre, url, id_user FROM video WHERE id = ?";
+    private static final String FINDBYNAME = "SELECT id, nombre, url, id_user FROM video WHERE nombre LIKE ?";
     private static final String FINDTAGFORVIDEOS = "SELECT tv.id_video FROM video as v JOIN tagvideo AS tv ON tv.id_video=v.id WHERE v.name LIKE ?";
-    private static final String FINDALLVIDEOS="SELECT id, name, url, id_user FROM video";
+    private static final String FINDALLVIDEOS="SELECT id, nombre, url, id_user FROM video";
+    private static final String ADDTAGTOAVIDEO="INSERT INTO tagvideo (id_tag,id_video) VALUES (?,?)";
 
     public VideoDAO() {
     }
@@ -85,7 +86,7 @@ public class VideoDAO extends Video {
             if (rs.next()) {
                 Video video = new Video();
                 video.setId(rs.getInt("id"));
-                video.setName(rs.getString("name"));
+                video.setName(rs.getString("nombre"));
                 video.setUrl(rs.getString("url"));
                 video.setVideoOwner(UserDAO.findById(rs.getInt("id_user")));
                 return video;
@@ -105,7 +106,7 @@ public class VideoDAO extends Video {
             pst.setString(1, name);
             ResultSet rs = pst.executeQuery();
             if (rs.next()) {
-                return findById(rs.getInt("id")); // Delegate to findById for full details
+                return findById(rs.getInt("id"));
             }
         } catch (SQLException e) {
             return null;
@@ -139,16 +140,38 @@ public class VideoDAO extends Video {
         }
 
         try (PreparedStatement pst = ConnectionMySQL.getConnection().prepareStatement(FINDALLVIDEOS)) {
-            ResultSet rs = pst.executeQuery();
-            if (rs.next()) {
-                Video tmpVideo=findById(rs.getInt("id"));
-                if (!tmpVideo.getVideoOwner().equals(userToExcludeVideos)){
-                    videosForUser.add(tmpVideo);
+            try(ResultSet rs = pst.executeQuery()) {
+                while (rs.next()) {
+                    Video tmpVideo = new Video();
+                    tmpVideo.setId(rs.getInt("id"));
+                    tmpVideo.setName(rs.getString("nombre"));
+                    tmpVideo.setUrl(rs.getString("url"));
+                    tmpVideo.setVideoOwner(UserDAO.findById(rs.getInt("id_user")));
+                    if (!tmpVideo.getVideoOwner().equals(userToExcludeVideos)) {
+                        videosForUser.add(tmpVideo);
+                    }
                 }
             }
-            return videosForUser;
         } catch (SQLException e) {
             return null;
+        }
+        return videosForUser;
+    }
+
+    public static boolean addTagToAVideo(Video video,Tag tag){
+        if (video.getName()==null || video.getName().isEmpty() || tag.getName()==null || tag.getName().isEmpty()){
+            return false;
+        }
+
+        Video videoToAdd=findByName(video.getName());
+        Tag tagToAdd=TagDAO.findByName(tag.getName());
+        try (PreparedStatement pst = ConnectionMySQL.getConnection().prepareStatement(ADDTAGTOAVIDEO)) {
+            pst.setInt(1, tagToAdd.getId());
+            pst.setInt(2, video.getId());
+            pst.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+            return false;
         }
     }
 }

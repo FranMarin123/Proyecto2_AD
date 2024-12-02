@@ -18,6 +18,11 @@ public class Library {
         this.libraryVideo = libraryVideo;
     }
 
+    public Library(User owner) {
+        this.owner = owner;
+        this.libraryVideo = null;
+    }
+
     public int getId() {
         return id;
     }

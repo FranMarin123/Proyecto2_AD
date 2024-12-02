@@ -42,11 +42,13 @@ public class LibraryDAO extends Library {
                     if (rs.first()) {
                         this.setId(rs.getInt(1));
                     }
-                    this.setLibraryVideo(LibraryVideoDAO.findAllVideosForLibrary(this));
-                    return true;
                 } catch (SQLException e) {
                     return false;
                 }
+                /*if (LibraryVideoDAO.findAllVideosForLibrary(this)!=null) {
+                    this.setLibraryVideo(LibraryVideoDAO.findAllVideosForLibrary(this));
+                }*/
+                return true;
             }
         }
         return false;
@@ -75,7 +77,10 @@ public class LibraryDAO extends Library {
                 if (rs.next()) {
                     result.setId(rs.getInt("id"));
                     result.setOwner(UserDAO.findById(rs.getInt("id_user")));
-                    result.setLibraryVideo(LibraryVideoDAO.findAllVideosForLibrary(result));
+                    //result.setLibraryVideo(LibraryVideoDAO.findAllVideosForLibrary(result));
+                }
+                if (result!=null && result.getId()<0){
+                    return null;
                 }
                 return result;
             } catch (SQLException e) {
@@ -95,7 +100,10 @@ public class LibraryDAO extends Library {
                 if (rs.next()) {
                     result.setId(rs.getInt("id"));
                     result.setOwner(UserDAO.findById(rs.getInt("id_user")));
-                    result.setLibraryVideo(LibraryVideoDAO.findAllVideosForLibrary(result));
+                    //result.setLibraryVideo(LibraryVideoDAO.findAllVideosForLibrary(result));
+                }
+                if (result!=null && result.getId()<0){
+                    return null;
                 }
                 return result;
             } catch (SQLException e) {

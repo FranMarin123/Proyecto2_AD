@@ -113,7 +113,7 @@ public class UserDAO extends User{
         return null;
     }
 
-    public User findByEmail(String email){
+    public static User findByEmail(String email){
         User result = null;
         if (email!=null && !email.isEmpty()) {
             try (PreparedStatement pst = ConnectionMySQL.getConnection().prepareStatement(FINDBYEMAIL)) {

@@ -4,6 +4,8 @@ module example {
     requires java.xml.bind;
     requires java.sql;
     requires org.apache.commons.net;
+    requires javafx.media;
+    requires javafx.base;
 
     opens example to javafx.fxml;
     opens example.model.connection.FTP to java.xml.bind;
