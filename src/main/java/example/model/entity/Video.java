@@ -24,6 +24,19 @@ public class Video {
         this.tags=tags;
     }
 
+    public Video(String name, String url, User videoOwner) {
+        this.name = name;
+        this.url = url;
+        this.videoOwner = videoOwner;
+    }
+
+    public Video(String name, String url, User videoOwner, List<Tag> tags) {
+        this.name = name;
+        this.url = url;
+        this.videoOwner = videoOwner;
+        this.tags=tags;
+    }
+
     public int getId() {
         return id;
     }

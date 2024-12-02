@@ -16,7 +16,7 @@ import java.util.List;
 public class LibraryVideoDAO {
     private final static String INSERT = "INSERT INTO videolibrary (id_video,id_library,visto) VALUES (?,?,?)";
     private final static String DELETE = "DELETE FROM videolibrary WHERE id_video=? AND id_library=?";
-    private final static String FINDLIBRARYVIDEO = "SELECT FROM videolibrary WHERE id_video=? AND id_library=? ";
+    private final static String FINDLIBRARYVIDEO = "SELECT id_video,id_library,visto FROM videolibrary WHERE id_video=? AND id_library=? ";
 
     public static boolean save(Library libraryToSave, Video videoToSave) {
         if (libraryToSave.getId() < 0 || videoToSave.getId() < 0) {
@@ -64,8 +64,8 @@ public class LibraryVideoDAO {
                 ResultSet rs = pst.executeQuery();
                 result = new LibraryVideo();
                 if (rs.next()) {
-                    result.setLibrary(LibraryDAO.findById(rs.getInt("id_video")));
-                    result.setVideo(VideoDAO.findById(rs.getInt("id_library")));
+                    result.setLibrary(LibraryDAO.findById(rs.getInt("id_library")));
+                    result.setVideo(VideoDAO.findById(rs.getInt("id_video")));
                     result.setViewed(rs.getBoolean("visto"));
                 }
                 if (result.getLibrary() == null || result.getVideo() == null) {
@@ -82,6 +82,9 @@ public class LibraryVideoDAO {
     public static List<LibraryVideo> findAllVideosForLibrary(Library libraryToFind){
         List<LibraryVideo> allVideoLibrary=new ArrayList<>();
         List<Video> allVideosForUser=VideoDAO.getVideosForThisUser(libraryToFind.getOwner());
+        if (allVideosForUser==null){
+            return null;
+        }
         for (Video video: allVideosForUser){
             LibraryVideo tmpLibraryVideo=findById(libraryToFind.getId(),video.getId());
             if (tmpLibraryVideo==null){
@@ -92,5 +95,7 @@ public class LibraryVideoDAO {
         }
         return allVideoLibrary;
     }
+
+
 
 }
