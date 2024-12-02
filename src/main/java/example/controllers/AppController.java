@@ -1,5 +1,7 @@
-package example;
+package example.controllers;
 
+import example.App;
+import example.controllers.Controller;
 import example.view.Scenes;
 import example.view.View;
 import javafx.fxml.FXML;
@@ -11,8 +13,6 @@ import javafx.scene.layout.BorderPane;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-
-import java.io.IOException;
 
 public class AppController extends Controller implements Initializable {
     @FXML

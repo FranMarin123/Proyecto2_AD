@@ -1,9 +1,9 @@
-package example;
+package example.controllers;
 
+import example.App;
+import example.controllers.Controller;
 import example.model.DAO.TagDAO;
-import example.model.Singleton.ActualLibrary;
 import example.model.Singleton.SelectedTag;
-import example.model.Singleton.UserSigned;
 import example.model.connection.FTP.ConnectionFTP;
 import example.model.entity.Video;
 import example.utils.JavaFXUtils;

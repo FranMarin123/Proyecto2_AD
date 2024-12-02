@@ -1,5 +1,7 @@
-package example;
+package example.controllers;
 
+import example.App;
+import example.controllers.Controller;
 import example.model.DAO.TagDAO;
 import example.model.Singleton.SelectedTag;
 import example.model.entity.Tag;

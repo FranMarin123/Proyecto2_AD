@@ -1,5 +1,7 @@
-package example;
+package example.controllers;
 
+import example.App;
+import example.controllers.Controller;
 import example.model.DAO.UserDAO;
 import example.model.Singleton.ActualLibrary;
 import example.model.Singleton.UserSigned;

@@ -1,9 +1,10 @@
-package example;
+package example.controllers;
 
+import example.App;
+import example.controllers.Controller;
 import example.model.Singleton.ActualLibrary;
 import example.model.Singleton.UserSigned;
 import example.model.connection.FTP.ConnectionFTP;
-import example.model.entity.Library;
 import example.utils.JavaFXUtils;
 import example.view.Scenes;
 import javafx.fxml.FXML;

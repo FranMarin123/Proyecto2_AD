@@ -1,5 +1,7 @@
-package example;
+package example.controllers;
 
+import example.App;
+import example.controllers.Controller;
 import example.model.DAO.TagDAO;
 import example.model.DAO.VideoDAO;
 import example.model.Singleton.UserSigned;
@@ -8,7 +10,6 @@ import example.model.entity.Tag;
 import example.model.entity.Video;
 import example.utils.JavaFXUtils;
 import example.view.Scenes;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;

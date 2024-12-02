@@ -30,7 +30,7 @@ public class LibraryDAO extends Library {
     }
 
     public boolean save() {
-        if (this.getOwner() == null || this.getId() < 0) {
+        if (this.getOwner() == null || this.getOwner().getId() < 0) {
             return false;
         } else {
             Library libraryToFind = findByOwner(this.getOwner());

@@ -1,4 +1,6 @@
-package example;
+package example.controllers;
+
+import example.App;
 
 import java.io.IOException;
 

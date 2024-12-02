@@ -1,6 +1,6 @@
 package example.view;
 
-import example.Controller;
+import example.controllers.Controller;
 import javafx.scene.Parent;
 
 public class View {

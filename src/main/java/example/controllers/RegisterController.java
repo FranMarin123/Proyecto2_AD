@@ -1,5 +1,7 @@
-package example;
+package example.controllers;
 
+import example.App;
+import example.controllers.Controller;
 import example.model.DAO.LibraryDAO;
 import example.model.DAO.UserDAO;
 import example.model.Singleton.ActualLibrary;
@@ -51,7 +53,7 @@ public class RegisterController extends Controller implements Initializable {
                 User tmpUser = new User(name.getText(), password.getText(), email.getText());
                 UserDAO saveUser=new UserDAO(tmpUser);
                 saveUser.save();
-                UserSigned.getInstance(tmpUser);
+                UserSigned.getInstance(saveUser);
                 LibraryDAO libraryToSave=new LibraryDAO(new Library(tmpUser));
                 libraryToSave.save();
                 ActualLibrary.getInstance();

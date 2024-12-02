@@ -16,7 +16,8 @@ import java.util.List;
 public class LibraryVideoDAO {
     private final static String INSERT = "INSERT INTO videolibrary (id_video,id_library,visto) VALUES (?,?,?)";
     private final static String DELETE = "DELETE FROM videolibrary WHERE id_video=? AND id_library=?";
-    private final static String FINDLIBRARYVIDEO = "SELECT id_video,id_library,visto FROM videolibrary WHERE id_video=? AND id_library=? ";
+    private final static String FINDLIBRARYVIDEO = "SELECT id_video,id_library,visto FROM videolibrary WHERE id_video=? AND id_library=?";
+    private final static String SETVIEWED = "UPDATE videolibrary SET visto=true WHERE id_video=? AND id_library=?";
 
     public static boolean save(Library libraryToSave, Video videoToSave) {
         if (libraryToSave.getId() < 0 || videoToSave.getId() < 0) {
@@ -96,6 +97,19 @@ public class LibraryVideoDAO {
         return allVideoLibrary;
     }
 
+    public static boolean setVideoViewed(Library libraryViewed,Video videoViewed){
+        if (libraryViewed.getId()<0 || videoViewed.getId()<0){
+            return false;
+        }
+        try (PreparedStatement pst = ConnectionMySQL.getConnection().prepareStatement(SETVIEWED)){
+            pst.setInt(1, videoViewed.getId());
+            pst.setInt(2, libraryViewed.getId());
+            pst.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+            return false;
+        }
+    }
 
 
 }

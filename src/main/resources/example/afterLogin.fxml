@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.media.MediaView?>
 
-<AnchorPane prefHeight="520.0" prefWidth="680.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="example.MainPageController">
+<AnchorPane prefHeight="520.0" prefWidth="680.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="example.controllers.MainPageController">
     <!-- Contenedor para el video -->
     <StackPane>
         <AnchorPane.leftAnchor>10.0</AnchorPane.leftAnchor>

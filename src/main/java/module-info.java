@@ -11,4 +11,6 @@ module example {
     opens example.model.connection.FTP to java.xml.bind;
     opens example.model.connection.database to java.xml.bind;
     exports example;
+    exports example.controllers;
+    opens example.controllers to javafx.fxml;
 }

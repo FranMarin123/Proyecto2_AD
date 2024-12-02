@@ -1,9 +1,10 @@
-package example;
+package example.controllers;
 
+import example.App;
+import example.controllers.Controller;
 import example.view.Scenes;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
